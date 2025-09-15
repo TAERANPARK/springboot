@@ -14,19 +14,19 @@
                 </tr>
             </thead>
             <tbody>
-<%--                <c:forEach var="board" items="${boardList}">--%>
-<%--                    <tr>--%>
-<%--                        <td>${board.id}</td>--%>
-<%--                        <td><a href="view/${board.id}" class="text-decoration-none">${board.title}</a></td>--%>
-<%--                        <td>${board.writer}</td>--%>
-<%--                        <td>${board.createdAt}</td>--%>
-<%--                        <td>${board.views}</td>--%>
-<%--                        <td>--%>
-<%--                            <a href="edit/${board.id}" class="btn btn-sm btn-primary">Modify</a>--%>
-<%--                            <a href="delete/${board.id}" class="btn btn-sm btn-danger">Delete</a>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                </c:forEach>--%>
+                <c:forEach var="board" items="${boardList}">
+                    <tr>
+                        <td>${board.id}</td>
+                        <td><a href="view/${board.id}" class="text-decoration-none">${board.title}</a></td>
+                        <td>${board.writer}</td>
+                        <td>${board.createdAt}</td>
+                        <td>${board.views}</td>
+                        <td>
+                            <a href="edit/${board.id}" class="btn btn-sm btn-primary">Modify</a>
+                            <a href="delete/${board.id}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
         <a href="write" class="btn btn-success">NewWrite</a>
