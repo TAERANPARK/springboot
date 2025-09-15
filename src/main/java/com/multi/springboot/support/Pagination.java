@@ -1,5 +1,6 @@
 package com.multi.springboot.support;
 
+// 게시판 페이지 계산을 담당하는 Pagination 클래스
 public class Pagination {
     private final int page;        // 현재 페이지 번호 (1부터 시작)
     private final int size;        // 한 페이지에 보여줄 글 개수
@@ -55,3 +56,4 @@ public class Pagination {
     public int getOffset() { return (page - 1) * size; }
     // SQL LIMIT 쿼리에서 사용할 offset 값 계산 (시작 위치)
 }
+
