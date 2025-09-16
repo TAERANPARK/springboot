@@ -20,7 +20,7 @@ public class BoardController {
     // 목록 + 검색 + 페이징
     @GetMapping("/list")
     public String list(@RequestParam(defaultValue = "1")  int page,
-                       @RequestParam(defaultValue = "10") int size,
+                       @RequestParam(defaultValue = "5") int size,
                        @RequestParam(required = false)    String q,
                        @RequestParam(defaultValue = "titleOrContent") String type,
                        Model model) {

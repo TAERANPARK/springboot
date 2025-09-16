@@ -12,13 +12,15 @@ public class Pagination {
 
     // 생성자: page(현재 페이지), size(페이지 크기), total(전체 건수), block(블록 크기)로 계산
     public Pagination(int page, int size, int total, int block) {
-        this.page = Math.max(1, page);   // 현재 페이지는 최소 1 이상
-        this.size = Math.max(1, size);   // 페이지 크기는 최소 1 이상
-        this.total = Math.max(0, total); // 전체 건수는 최소 0 이상
+        this.page = Math.max(1, page);   // 현재 페이지는 최소 1 이상 / page가 0이하로 들어오면 무조건 1로 설정
+        this.size = Math.max(1, size);   // 페이지 크기는 최소 1 이상 / size가 0이하로 들어오면 무조건 1로 설정
+        this.total = Math.max(0, total); // 전체 건수는 최소 0 이상 / total이 음수면 0으로 보정 / 총 tuple의 개수
+        // Math.ceil(4.1)=5(올림)
         this.totalPages = (int) Math.ceil((double) this.total / this.size);
         // 총 페이지 수 = 전체 글 수 / 페이지 크기 (올림)
-
         this.block = Math.max(1, block); // 블록 크기는 최소 1 이상
+        // 블록 = 5  -> [1][2][3][4][5], [6][7][8][9][10]
+        // 블록 = 10 -> [1][2][3][4][5][6][7][8][9][10]
 
         int currentBlock = (int) Math.ceil((double) this.page / this.block);
         // 현재 블록 번호 = 현재 페이지 / 블록 크기 (올림)
@@ -31,6 +33,7 @@ public class Pagination {
 
         this.endPage = Math.min(ep, Math.max(1, this.totalPages));
         // 실제 끝 페이지 = 총 페이지 수와 비교하여 작은 값 선택
+        // min 둘 중 작은 값 반환
     }
 
     public int getPage() { return page; }              // 현재 페이지 번호 반환
@@ -49,11 +52,13 @@ public class Pagination {
 
     public int getPrevPage() { return Math.max(1, startPage - 1); }
     // 이전 블록으로 이동할 때의 페이지 번호 (최소 1)
+    // 2번 블록의 첫번째 페이지가 11일 떄 11-1은 이전 블록의 마지막 페이지
 
     public int getNextPage() { return Math.max(1, Math.min(totalPages, endPage + 1)); }
     // 다음 블록으로 이동할 때의 페이지 번호 (총 페이지 수 넘지 않도록 제한)
 
     public int getOffset() { return (page - 1) * size; }
     // SQL LIMIT 쿼리에서 사용할 offset 값 계산 (시작 위치)
+    // DB 조회할 때 시작위치 (LIMIT offset, size용)
 }
 

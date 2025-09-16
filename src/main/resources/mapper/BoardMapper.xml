@@ -22,6 +22,7 @@
     </select>
 
     <!-- id로 특정 글 조회 -->
+    <!-- resultType="com.multi.springboot.model.Board" Tuple 하나의 정보를 넣어 줄 Java의 객체 -->
     <select id="getBoardById" parameterType="int" resultType="com.multi.springboot.model.Board">
         SELECT id, title, writer, content, views, created_at
         FROM board
